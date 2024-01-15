@@ -4,8 +4,8 @@ import Button from "./Button";
 function SplitAbillForm({ selectedFriend, handleSplitBill }) {
   const [bill, setBill] = useState("");
   const [myexp, setMyExp] = useState("");
-  const [whoispaying, setWhoisPaying] = useState("user");
   const billByFriend = bill ? bill - myexp : "";
+  const [whoispaying, setWhoisPaying] = useState("user");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,10 +45,7 @@ function SplitAbillForm({ selectedFriend, handleSplitBill }) {
       <input type="text" value={billByFriend} disabled />
 
       <label>🤑 Who is paying the bill</label>
-      <select
-        value={whoispaying}
-        onChange={(e) => setWhoisPaying(e.target.value)}
-      >
+      <select onChange={(e) => setWhoisPaying(e.target.value)}>
         <option value="user">You</option>
         <option value="friend">{selectedFriend.name}</option>
       </select>

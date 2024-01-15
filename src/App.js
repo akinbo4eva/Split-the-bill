@@ -11,18 +11,20 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState(null);
 
+  const handleIsFormOpened = () => {
+    setIsOpen((open) => !open);
+  };
+
   const handleAddFriend = (friend) => {
     setFriends((friends) => [...friends, friend]);
+    setIsOpen(false);
   };
 
   const handleSelection = (friend) => {
     setSelectedFriend((curFriend) =>
       curFriend?.id === friend.id ? null : friend
     );
-  };
-
-  const handleIsFormOpened = () => {
-    setIsOpen((open) => !open);
+    setIsOpen(false);
   };
 
   const handleSplitBill = (value) => {
@@ -33,6 +35,7 @@ function App() {
           : friend
       )
     );
+    setSelectedFriend(null);
   };
 
   return (
@@ -52,6 +55,7 @@ function App() {
         <SplitAbillForm
           selectedFriend={selectedFriend}
           handleSplitBill={handleSplitBill}
+          key={selectedFriend.id}
         />
       )}
     </div>
